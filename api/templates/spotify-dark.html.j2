@@ -2,6 +2,53 @@
     <foreignObject width="480" height="133">
         <div xmlns="http://www.w3.org/1999/xhtml" class="container">
             <style>
+                .animated {
+                overflow: hidden;
+                width: 11rem;
+                white-space: nowrap;
+                }
+
+                .animated > * {
+                display: inline-block;
+                position: relative;
+                animation: 3s linear 0s infinite alternate move;
+                }
+
+                .animated > *.min {
+                    min-width: 100%;
+                }
+
+                @keyframes move {
+                0%,
+                25% {
+                    transform: translateX(0%);
+                    left: 0%;
+                    }
+                75%,
+                100% {
+                    transform: translateX(-100%);
+                    left: 100%;
+                    }
+                }
+
+                /* Non-solution styles */
+
+                .container {
+                display: flex;
+                flex-wrap: wrap;
+                }
+
+                .animated {
+                font-size: 2rem;
+                font-family: sans-serif;
+                border: 0.1rem solid black;
+                margin: 1rem;
+                }
+
+                .animated > * {
+                box-sizing: border-box;
+                padding: .5rem 1rem;
+                }
 
                 .div {
                     font-family: 'Monospace';
@@ -67,7 +114,7 @@
                 }
 
                 #bars {
-                    width: 40px;
+                    width: 336px;
                     height: 30px;
                     bottom: 23px;
                     position: absolute;
@@ -125,10 +172,10 @@
 
                 <div class="content">
                     <a href="{{songURI}}" target="_blank">
-                        <div class="song">{{songName}}</div>
+                        <div class="song animated"><span>{{songName}}</span></div>
                     </a>
                     <a href="{{artistURI}}" target="_blank">
-                        <div class="artist">{{artistName}}</div>
+                        <div class="artist animated"><span>{{artistName}}</span></div>
                     </a>
                     <div id="bars">{{contentBar|safe}}</div> 
                     <a href="{{songURI}}" class="spotify-logo">
